@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combination Menu</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #a5b4fc;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #818cf8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('../ui/combination_screen.webp');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body class="flex justify-center items-center min-h-screen">
+
+    <!-- Back Button -->
+    <a href="categories.html"
+       class="fixed top-6 left-6 z-10 backdrop-blur-md text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-all duration-200 ease-in-out hover:bg-indigo-500 hover:text-white active:scale-95">
+        ← Back
+    </a>
+
+    <!-- Menu -->
+    <div id="menu-container" class="max-h-96 overflow-y-auto custom-scrollbar pr-5">
+        <ul class="space-y-5"></ul>
+    </div>
+
+<script>
+
+const combinations = [
+
+    {
+        name: "Solar System",
+        file: "solarsystem"
+    },
+
+    {
+        name: "9 Houses (Navgrah)",
+        file: "navgrah"
+    }
+
+];
+
+// Sort alphabetically
+combinations.sort((a,b)=>a.name.localeCompare(b.name));
+
+const menuList=document.querySelector('#menu-container ul');
+
+function createMenuItems(){
+
+    combinations.forEach(item=>{
+
+        const li=document.createElement('li');
+
+        const a=document.createElement('a');
+
+        a.textContent=item.name;
+
+        // Opens pages from combination folder
+        a.href=`combination/${item.file}.html`;
+
+        a.className="block w-full text-center py-4 px-5 bg-indigo-500 text-white font-semibold rounded-xl shadow-md transform transition-all duration-200 ease-in-out hover:bg-indigo-600 hover:shadow-lg active:scale-95";
+
+        li.appendChild(a);
+
+        menuList.appendChild(li);
+
+    });
+
+}
+
+createMenuItems();
+
+</script>
+
+</body>
+</html>
